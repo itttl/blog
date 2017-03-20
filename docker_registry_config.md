@@ -3,14 +3,15 @@ author: yanliang.zhao
 head: http://blog.itttl.com/logo_miao.png
 date: 2015-08-10
 title: Docker 私有仓库搭建 
-tags: docker,私有仓库
+tags: docker,私有仓库,docker,registry,amazon,s3,oss
 category: Docker
 status: publist
-summary: Docker私有仓库搭建，https&auth
+summary: Docker私有仓库搭建,docker,registry,amazon,s3,oss
 -->
 
 ![docker-logo](./img/logo_docker.png)
 
+## 20170314更新:添加使用Amazon S3做镜像存储的私有仓库
 ## 20160518更新:使用阿里OSS的doceker私有仓库
 
 ### init web auth passwd and 自签名 ca  证书
@@ -38,7 +39,7 @@ docker run -d -p 172.16.1.11:443:5000 --restart=always --name registry \
   -e REGISTRY_STORAGE_OSS_SECURE=false \
   registry:2.3
 ```
-### wlan-net && web auth 
+### wlan-net && web auth && 阿里 OSS 
 
 ```
 #!/bin/bash
@@ -58,7 +59,7 @@ docker run -d -p 443:5000 --restart=always --name registry \
   -e REGISTRY_STORAGE_OSS_SECURE=false \
   registry:2.3
 ```
-### no 阿里OSS && web auth && wlan-net
+### web auth && wlan-net && local store
 ```
 #!/bin/bash
 docker run -d -p 443:5000 --restart=always --name registry \
@@ -71,6 +72,51 @@ docker run -d -p 443:5000 --restart=always --name registry \
   registry:2.3
 ```
 
+
+### Amazon S3 && no auth 
+```
+#!/bin/bash
+docker run -d -p 443:5000 --restart=always --name registry \
+  -v `pwd`/config.s3:/config \
+  -e "REGISTRY_HTTP_TLS_CERTIFICATE=/config/chained.pem" \
+  -e "REGISTRY_HTTP_TLS_KEY=/config/domain.key" \
+  -e "REGISTRY_STORAGE=s3" \
+  -e "REGISTRY_STORAGE_S3_REGION=eu-west-1" \
+  -e "REGISTRY_STORAGE_S3_BUCKET=itttl" \
+  -e "REGISTRY_STORAGE_CACHE_BLOBDESCRIPTOR=inmemory" \
+  -e "REGISTRY_STORAGE_S3_ACCESSKEY=XXXXXXXXXXXXXXXXXXXX" \
+  -e "REGISTRY_STORAGE_S3_SECRETKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" \
+  -e "SEARCHBACKEND=sqlalchemy" \
+  registry:2
+```
+### 补充一个S3的授权策略
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation",
+        "s3:ListBucketMultipartUploads"
+      ],
+      "Resource": "arn:aws:s3:::S3_BUCKET_NAME"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:ListMultipartUploadParts",
+        "s3:AbortMultipartUpload"
+      ],
+      "Resource": "arn:aws:s3:::S3_BUCKET_NAME/*"
+    }
+  ]
+}
+```
 ### 环境变量说明
 ```
 REGISTRY_STORAGE_OSS_INTERNAL 阿里OSS是否使用内网
