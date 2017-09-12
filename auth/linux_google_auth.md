@@ -2,8 +2,8 @@
 author: yanliang.zhao
 head: http://blog.itttl.com/logo_miao.png
 date: 2017-03-20
-title: Google 安全验证模块(动态密码验证)
-tags: Authenticator 
+title: SSH 添加Google安全验证模块(动态密码验证)
+tags: Authenticator,Google,SSH,安全验证模块
 category: Authenticator
 status: publist
 summary: Google,auth,安全验证模块,动态密码验证

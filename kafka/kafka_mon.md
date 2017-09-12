@@ -3,8 +3,8 @@ author: yanliang.zhao
 head: http://blog.itttl.com/logo_miao.png
 date: 2017-02-2
 title: 【企业级应用】Kafka 监控脚本(配合Zabbix使用)
-tags: Kafka
-category: Kafka,监控
+tags: Kafka，监控
+category: Kafka
 status: publist
 summary: 
 -->

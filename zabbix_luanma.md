@@ -47,9 +47,9 @@ DejaVuSans.ttf  simkai.ttf
 vim /var/www/html/zabbix/include/defines.inc.php   
 
 ##修改
-define('ZBX_GRAPH_FONT_NAME',  'DejaVuSans');为define('ZBX_GRAPH_FONT_NAME',       'DejaVuSans');
+define('ZBX_GRAPH_FONT_NAME',  'DejaVuSans');
 ##为
-define('ZBX_GRAPH_FONT_NAME',  'DejaVuSans');为define('ZBX_GRAPH_FONT_NAME',       'simkai');
+define('ZBX_GRAPH_FONT_NAME',       'simkai');
 ```
 
 保存，重启web，刷新zabbix web页面试试看，是不是恢复了。  
