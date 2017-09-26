@@ -150,9 +150,10 @@ arm_idle: 8 group_idle: 0 <<< cfq_arm_slice_timer()
 cfq schedule dispatch <<< cfq_schedule_dispatch()
 ```
 ## 利用btt分析blktrace数据
-```
-blkparse只是将blktrace数据转成可以人工阅读的格式，由于数据量通常很大，人工分析并不轻松。btt是对blktrace数据进行自动分析的工具。
 
+blkparse只是将blktrace数据转成可以人工阅读的格式，由于数据量通常很大，
+人工分析并不轻松。btt是对blktrace数据进行自动分析的工具。
+```
 btt不能分析实时数据，只能对blktrace保存的数据文件进行分析。使用方法：
 把原本按CPU分别保存的文件合并成一个，合并后的文件名为sdb.blktrace.bin：
 $ blkparse -i sdb -d sdb.blktrace.bin
@@ -160,7 +161,7 @@ $ blkparse -i sdb -d sdb.blktrace.bin
 $ btt -i sdb.blktrace.bin
 ```
 #### 下面是一个btt实例：
-```
+```text
             ALL           MIN           AVG           MAX           N
 --------------- ------------- ------------- ------------- -----------
 
