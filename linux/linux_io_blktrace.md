@@ -186,6 +186,7 @@ Q2C               0.000125953   0.000137820   0.014270153       94558
 很小，完全正常。I2D稍微有点大，应该是cfq scheduler的调度策略造成的，你可以试试其它scheduler，
 比如deadline，比较两者的差异，然后选择最适合你应用特点的那个。
 
-[转载自][01]
+
+转载自:[http://linuxperf.com/?cat=4][01]
 
 [01]:http://linuxperf.com/?cat=4
