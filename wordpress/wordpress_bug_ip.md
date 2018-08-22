@@ -28,7 +28,3 @@ if ( 127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0]
     改为
 if ( 127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0] || 0 === $parts[0]
 ```
-
-[阿里云官方文档][100]
-
-[100]:http://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy
