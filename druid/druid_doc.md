@@ -1,4 +1,13 @@
-
+<!--
+author: yanliang.zhao
+head: http://blog.itttl.com/logo_miao.png
+date: 2019-03-16
+title: Druid 原理说明文档
+tags: Druid
+category: Druid
+status: publist
+summary: Druid 原理说明文档
+-->
 
 # Druid
 

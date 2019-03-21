@@ -1,3 +1,13 @@
+<!--
+author: yanliang.zhao
+head: http://blog.itttl.com/logo_miao.png
+date: 2019-03-16
+title: Druid快速入门
+tags: Druid
+category: Druid
+status: publist
+summary: Druid快速入门
+-->
 
 
 # Druid快速入门
