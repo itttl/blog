@@ -10,6 +10,8 @@ summary: Docker for Mac 添加私有证书(私有仓库验证证书)
 -->
 
 ![docker-logo](./img/logo_docker.png)
+### 2019-03-27新增
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
 
 ### (Solved) How to add your own self-signed certs to Docker for Mac (no more x509)
 

@@ -94,3 +94,4 @@ rm -rf /tmp/kafka-logs
 ## 集群安装配置
 
 https://blog.csdn.net/wangshuminjava/article/details/80870157
+https://blog.csdn.net/a794922102/article/details/88237610
