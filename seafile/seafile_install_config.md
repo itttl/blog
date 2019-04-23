@@ -2,11 +2,11 @@
 author: yanliang.zhao
 head: http://blog.itttl.com/logo_miao.png
 date: 2018-12-28
-title: Supserset 安装配置
+title: seafile 安装配置
 tags: superset
-category: Supserset
+category: seafile
 status: publist
-summary: Supserset 安装配置
+summary: seafile 安装配置
 -->
 
 # 开始
