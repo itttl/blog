@@ -10,7 +10,7 @@ summary: Kafka & zookeeper 集群的安装配置，以及简单的测试
 -->
 
 ### 配置hosts
-kafka01/02/03  
+kafka01/02/03
 ```bash
 vim /etc/hosts
 #-----------------------------
@@ -20,16 +20,16 @@ vim /etc/hosts
 #-----------------------------
 ```
 ### 安装kafka
-kafka01/02/03  
+kafka01/02/03
 ```bash
 tar zxvf /opt/kafka_2.11-0.8.2.0.tgz -C /data/
 mv /data/kafka_2.11-0.8.2.0 /data/kafka
 ```
 ### 配置zookeeper
-kafka01/02/03  
+kafka01/02/03
 ```bash
 cd /data/kafka/config
-vim zookeeper.properties 
+vim zookeeper.properties
 #-----------------------------
 dataDir=/data/zookeeper
 clientPort=2181
@@ -46,7 +46,7 @@ mkdir /data/zookeeper
 echo "1" > /data/zookeeper/myid
 ```
 ### 配置kafka
-kafka01/02/03  
+kafka01/02/03
 ```bash
 vim config/server.properties
 #-----------------------------
@@ -102,7 +102,7 @@ producer.purgatory.purge.interval.requests=100
 ```
 
 ### 配置防火墙
-kafka01/02/03  
+kafka01/02/03
 ```bash
 vim /etc/sysconfig/iptables
 #-----------------------------
@@ -117,7 +117,7 @@ service iptables restart
 
 
 ### 启动zookeeper/kafka
-kafka01/02/03  
+kafka01/02/03
 ```bash
 nohup ./bin/zookeeper-server-start.sh ./config/zookeeper.properties &
 and
@@ -152,7 +152,14 @@ bin/kafka-console-producer.sh --broker-list kafka01:9092,kafka02:9092,kafka03:90
 bin/kafka-console-consumer.sh --zookeeper kafka01:2181 --topic niu_text_topic01 --from-beginning
 ```
 
+#### 针对topic设置消息过期时间
+```
+./bin/kafka-configs.sh --zookeeper kafka1.itttl.local:2181 --alter --entity-name niu_text_topic01 --entity-type topics --add-config retention.ms=86400000
 
+retention.ms=86400000 为一天，单位是毫秒。
+## 查看设置
+./bin/kafka-configs.sh --zookeeper kafka1.itttl.local:2181 --describe --entity-name niu_text_topic01 --entity-type topics
+如果没有立刻删除的话你可以设置下面参数。
+./bin/kafka-topics.sh --zookeeper kafka1.itttl.local:2181 --alter --topic niu_text_topic01 --config cleanup.policy=delete
 
-
-
+```
