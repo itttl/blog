@@ -143,6 +143,23 @@ mysql> show slave status\G;
 - master/slave: reset slave
 - master/slave: rm -rf $mysql_datadir/master.info
 
+### 双主防止主键冲突
+```
+mysql A
+	# vim /etc/my.cnf
+	auto_increment_increment=2  pos每次自增的加的值
+	auto_increment_offset=1     pos的起始值
+
+	ID自增:1、3、5、7、9
+
+
+mysql B
+	# vim /etc/my.cnf
+	auto_increment_increment=2  pos每次自增的加的值
+	auto_increment_offset=2     pos的起始值
+
+	ID自增: 2、4、6、8
+```
 然后重新部署即可
 ### 参考:
 [MySQL5.6 GTID新特性实践 by cenalulu(卢钧轶)][101]
